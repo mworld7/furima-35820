@@ -2,13 +2,16 @@
 
 ## users テーブル
 
-| Column        | Type   | Options     |
-| ------------- | ------ | ----------- |
-| email         | string | null: false |
-| password      | string | null: false |
-| nickname      | string | null: false |
-| name          | string | null: false |
-| birthday      | data   | null: false |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| nickname           | string | null: false               |
+| family_name        | string | null: false               |
+| first_name         | string | null: false               |
+| family_name_kana   | string | null: false               |
+| first_name_kana    | string | null: false               |
+| birthday           | data   | null: false               |
 
 ### Association
 
@@ -17,30 +20,27 @@
 
 ## items テーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| title        | string     | null: false                    |
-| category     | string     | null: false                    |
-| condition    | string     | null: false                    |
-| postage_by   | string     | null: false                    |
-| ship_from    | string     | null: false                    |
-| shipping_date| date       | null: false                    |
-| price        | integer    | null: false                    |
-| image        |            |                                |
-| user         | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| title            | string     | null: false                    |
+| price            | integer    | null: false                    |
+| description      | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| condition_id     | integer    | null: false                    |
+| postage_by_id    | integer    | null: false                    |
+| ship_from_id     | integer    | null: false                    |
+| shipping_date_id | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :purchasers
+- has_one :purchaser
 
 ## purchasers テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| card_info     | integer    | null: false                    |
-| security_code | integer    | null: false                    |
-| expiring_date | date       | null: false                    |
 | user          | references | null: false, foreign_key: true |
 | item          | references | null: false, foreign_key: true |
 
@@ -58,7 +58,7 @@
 | prefecture    | string     | null: false                    |
 | city          | string     | null: false                    |
 | street        | string     | null: false                    |
-| building      | string     | null: false                    |
+| building      | string     |                                |
 | phone         | string     | null: false                    |
 | purchaser     | references | null: false, foreign_key: true |
 
