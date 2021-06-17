@@ -91,4 +91,75 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
   end
+
+  describe '新規登録/本人情報確認' do
+
+    it 'お名前(全角)は、名字が必須であること' do
+      @user.family_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include ("Family name can't be blank")
+    end
+
+    it 'お名前(全角)は、名前が必須であること' do
+      @user.first_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include ("First name can't be blank")
+    end
+
+    it '名字(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること。' do
+      @user.family_name = 'aa11'
+      @user.valid?
+      expect(@user.errors.full_messages).to include ("Family name 全角文字を使用してください")
+    end
+
+    it '名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること。' do
+      @user.first_name = 'aa11'
+      @user.valid?
+      expect(@user.errors.full_messages).to include ("First name 全角文字を使用してください")
+    end
+
+    it 'お名前カナ(全角)は、名字が必須であること' do
+      @user.family_name_kana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include ("Family name kana can't be blank")
+    end
+
+    it 'お名前カナ(全角)は、名前が必須であること' do
+      @user.first_name_kana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include ("First name kana can't be blank")
+    end
+
+    it '名字カナ(全角)は、英字での登録はできない。' do
+      @user.family_name_kana = 'Test'
+      @user.valid?
+      expect(@user.errors.full_messages).to include ("Family name kana 全角カタカナを使用してください")
+    end
+
+    it '名字カナ(全角)は、数字での登録はできない。' do
+      @user.family_name_kana = '1111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include ("Family name kana 全角カタカナを使用してください")
+    end
+
+    it '名前カナ(全角)は、英字での登録はできない。' do
+      @user.first_name_kana = 'Test'
+      @user.valid?
+      expect(@user.errors.full_messages).to include ("First name kana 全角カタカナを使用してください")
+    end
+
+    it '名前カナ(全角)は、数字での登録はできない。' do
+      @user.first_name_kana = '1111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include ("First name kana 全角カタカナを使用してください")
+    end
+
+    it '生年月日が必須であること' do
+      @user.birthday = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include ("Birthday can't be blank")
+    end
+
+  end
+
 end
