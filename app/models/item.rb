@@ -1,12 +1,14 @@
 class Item < ApplicationRecord
-  vakidates :title, presence: true
-  validates :price, presence: true
-  validates :description, presence: true
-  # validates :category_id, presence: true
-  # validates :condition_id, presence: true
-  # validates :postage_by_id, presence: true
-  # validates :ship_from_id, presence: true
-  # validates :shipping_date_id, presence: true
+  with_options presence: true do 
+    vakidates :title, presence: true
+    validates :description, presence: true
+    validates :category_id, presence: true
+    validates :condition_id, presence: true
+    validates :postage_by_id, presence: true
+    validates :ship_from_id, presence: true
+    validates :shipping_date_id, presence: true
+  end
+  validates :price, presence: true, numericality: {in:300..9999999}, format: { with: /\A[0-9]+\z/ } #"presence: true" と "numericality:"は意味が重複する？ 
   validates :genre_id, numericality: { other_than: 1 } 
 
   belongs_to :user
