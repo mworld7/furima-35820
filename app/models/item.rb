@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+
   belongs_to :user
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -11,6 +12,7 @@ class Item < ApplicationRecord
   with_options presence: true do 
     validates :title
     validates :description
+    validates :image
 
     with_options numericality: { other_than: 1 }  do
     validates :category_id
@@ -19,7 +21,10 @@ class Item < ApplicationRecord
     validates :ship_from_id
     validates :shipping_date_id
     end
+
+    with_options numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, format: { with: /\A[0-9]+\z/ } do
+    validates :price
+    end
   end
-  validates :price, presence: true, numericality: {in:300..9999999}, format: { with: /\A[0-9]+\z/ }  
-  
+   
 end

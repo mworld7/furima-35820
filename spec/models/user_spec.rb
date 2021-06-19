@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe Item, type: :model do
+RSpec.describe User, type: :model do
   before do
-    @item = FactoryBot.build(:item)
+    @user = FactoryBot.build(:user)
   end
 
   describe '新規登録/ユーザー情報/本人情報確認' do
 
-    context '商品出品登録ができる時' do
+    context 'ユーザー新規登録ができる時' do
       it 'email、passwordとpassword_confirmation、nickname、name、name_kana、birthday、が存在すれば登録できること' do
         expect(@user).to be_valid
       end
