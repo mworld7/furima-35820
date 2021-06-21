@@ -6,6 +6,9 @@ class PurchasersController < ApplicationController
   end
 
   def create
+    @purchaser = Purchaser.create(purchaser_params)
+    Address.create(address_params)
+    redirect_to root_path
   end
 
 end
