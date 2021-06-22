@@ -2,7 +2,7 @@ class PurchasersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
 
   def index
-   
+    @purchaser_address = PurchaserAddress.new
   end
 
   def create
@@ -19,5 +19,6 @@ class PurchasersController < ApplicationController
 
   def purchaser_params
     params.require(:purchaser_address).permit(:post_code, :ship_from_id, :city, :street, :building, :phone, :price, :item_id).merge(user_id: current_user.id)
+  end
 
 end
