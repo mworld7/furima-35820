@@ -13,10 +13,7 @@ class PurchaserAddress
   end
 
   def save
-    # 購入情報を保存し、変数purchaserに代入する
     purchaser = Purchaser.create(item_id: item_id, user_id: user_id)
-    # 住所を保存する
-    # purchaser_idには、変数purchaserのidと指定する
     Address.create(postal_code: postal_code, ship_from: ship_from, city: city, street: street, building: building, phone: phone, purchaser_id: purchaser.id)
   end
 end
