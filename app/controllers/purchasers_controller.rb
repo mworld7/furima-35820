@@ -3,9 +3,11 @@ class PurchasersController < ApplicationController
 
   def index
     @purchaser_address = PurchaserAddress.new
+    @item = Item.find(params[:item_id])
   end
 
   def create
+    binding.pry
     @purchaser_address = PurchaserAddress.new(purchaser_params)
     if @purchaser_address.valid?
       @purchaser_address.save
