@@ -10,6 +10,12 @@ class PurchasersController < ApplicationController
     @purchaser_address = PurchaserAddress.new(purchaser_params)
     @item = Item.find(params[:item_id])
     if @purchaser_address.valid?
+      Payjp.api_key = "sk_test_40f923e03f436a11f3edeea1"
+      Payjp::Charge.create(
+        amount: @item.price,
+        card: purchaser_params[:token],
+        currency: 'jpy'
+      )
       @purchaser_address.save
       redirect_to root_path
     else
