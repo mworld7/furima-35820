@@ -91,6 +91,11 @@ RSpec.describe PurchaserAddress, type: :model do
         @purchaser_address.valid?
         expect(@purchaser_address.errors.full_messages).to include("Phone is invalid")
       end
+      it "tokenが空では登録できないこと" do
+        @purchaser_address.token = nil
+        @purchaser_address.valid?
+        expect(@purchaser_address.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
