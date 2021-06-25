@@ -51,6 +51,11 @@ RSpec.describe PurchaserAddress, type: :model do
         @purchaser_address.valid?
         expect(@purchaser_address.errors.full_messages).to include("Ship from can't be blank")
       end
+      it '都道府県が、(---) では登録できない' do
+        @purchaser_address.ship_from_id = 1
+        @purchaser_address.valid?
+        expect(@purchaser_address.errors.full_messages).to include("Ship from must be other than 1")
+      end
       it '市区町村が必須であること' do
         @purchaser_address.city = ''
         @purchaser_address.valid?
