@@ -4,7 +4,7 @@ class PurchaserAddress
 
   with_options presence: true do
     validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/}
-    validates :ship_from_id
+    validates :ship_from_id, numericality: { other_than: 1 }
     validates :city
     validates :street
     validates :phone, format: { with: /\A\d{10,11}\z/}

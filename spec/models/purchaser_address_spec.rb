@@ -104,7 +104,6 @@ RSpec.describe PurchaserAddress, type: :model do
       it "商品が空では登録できないこと" do
         @purchaser_address.item_id = ""
         @purchaser_address.valid?
-        binding.pry
         expect(@purchaser_address.errors.full_messages).to include("Item can't be blank")
       end
     end
