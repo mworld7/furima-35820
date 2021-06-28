@@ -14,7 +14,7 @@ class Item < ApplicationRecord
     validates :description
     validates :image
 
-    with_options numericality: { other_than: 1 } do
+    with_options numericality: { other_than: 1, message: 'を選んでください' } do
       validates :category_id
       validates :condition_id
       validates :postage_by_id
