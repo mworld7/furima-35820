@@ -16,55 +16,55 @@ RSpec.describe Item, type: :model do
       it '商品画像が必須であること' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("画像を入力してください")
+        expect(@item.errors.full_messages).to include('画像を入力してください')
       end
 
       it '商品名が必須であること' do
         @item.title = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品名を入力してください")
+        expect(@item.errors.full_messages).to include('商品名を入力してください')
       end
 
       it '商品の説明が必須であること' do
         @item.description = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品の説明を入力してください")
+        expect(@item.errors.full_messages).to include('商品の説明を入力してください')
       end
 
       it 'カテゴリーが必須であること' do
         @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("カテゴリーを選んでください")
+        expect(@item.errors.full_messages).to include('カテゴリーを選んでください')
       end
 
       it '商品の状態が必須であること' do
         @item.condition_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品の状態を選んでください")
+        expect(@item.errors.full_messages).to include('商品の状態を選んでください')
       end
 
       it '配送料の負担が必須であること' do
         @item.postage_by_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("配送料の負担を選んでください")
+        expect(@item.errors.full_messages).to include('配送料の負担を選んでください')
       end
 
       it '発送元の地域が必須であること' do
         @item.ship_from_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("発送元の地域を選んでください")
+        expect(@item.errors.full_messages).to include('発送元の地域を選んでください')
       end
 
       it '発送までの日数が必須であること' do
         @item.shipping_date_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("発送までの日数を選んでください")
+        expect(@item.errors.full_messages).to include('発送までの日数を選んでください')
       end
 
       it '販売価格が必須であること' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("価格を入力してください")
+        expect(@item.errors.full_messages).to include('価格を入力してください')
       end
 
       it 'カテゴリーは、(---) では登録できない' do
