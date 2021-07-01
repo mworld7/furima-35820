@@ -14,8 +14,15 @@ app/assets/stylesheets/items/new.css %>
     <%# 商品画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
-        商品画像
+        現在の商品画像
         <span class="indispensable">必須</span>
+      </div>
+    </div>
+    <%= image_tag @item.image, class: "item-img-edit" %>
+      <div class="click-upload">
+    <div class="img-upload">
+      <div class="weight-bold-text">
+        変更したい画像を選択
       </div>
       <div class="click-upload">
         <p>
@@ -24,6 +31,7 @@ app/assets/stylesheets/items/new.css %>
         <%= f.file_field :image, id:"item-image" %>
       </div>
     </div>
+    <div id="image-list"></div>
     <%# /商品画像 %>
     <%# 商品名と商品説明 %>
     <div class="new-items">
