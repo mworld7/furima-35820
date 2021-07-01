@@ -155,3 +155,13 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+.back-btn2 {
+  background: #aaa;
+  border: 1px solid #aaa;
+  color: #fff;
+  padding: 10px 32%;
+  text-decoration: none;
+  display: flex;
+  margin-top: 20px;
+}
