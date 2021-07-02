@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one :purchaser
-  has_one_attached :image
+  has_many_attached :images
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :title
     validates :description
-    validates :image
+    validates :images
 
     with_options numericality: { other_than: 1, message: 'を選んでください' } do
       validates :category_id
